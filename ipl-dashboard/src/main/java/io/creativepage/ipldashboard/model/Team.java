@@ -1,12 +1,18 @@
 package io.creativepage.ipldashboard.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Team {
+
+    public Team() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,8 +21,19 @@ public class Team {
     private long totalMatches;
     private long totalWins;
 
+    @Transient
+    private List<Match> match;
+
     public long getId() {
         return id;
+    }
+
+    public List<Match> getMatch() {
+        return match;
+    }
+
+    public void setMatch(List<Match> match) {
+        this.match = match;
     }
 
     public void setId(long id) {
